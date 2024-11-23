@@ -32,7 +32,8 @@ if arg[1] == "-n" then
     print("Done.")
     --|   Moncak  |`4211110712`|
     for index, info in ipairs(as_info_hops) do
-        as_info_hops[index].name = string.match(metadata, "|%s*([^|]-)%s*|`" .. info.asn .. "`|")
+        as_info_hops[index].name = string.match(metadata, "|%s*([^|]-)%s*|`" .. info.asn .. "`|") or
+            string.match(metadata, "|%s*`" .. info.asn .. "`%s*|%s*([^|]-)%s*|") or "Unknown"
     end
     print("ASN\t\tHops\tName")
     for _, info in ipairs(as_info_hops) do
